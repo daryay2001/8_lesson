@@ -36,17 +36,17 @@
 # Написать рекурсивную функцию, которая выводит N звезд в ряд, число N задает пользователь.
 # Проиллюстрируйте работу функции примером. (протестировать)
 #
-def my_star(n) -> str:
-    if n > 0:
-        print("*", end="")
-        my_star(n-1)
-    else:
-        return print()
-try:
-    number = int(input("Enter your number: "))
-    my_star(number)
-except Exception as error:
-    print(error)
+# def my_star(n) -> str:
+#     if n > 0:
+#         print("*", end="")
+#         my_star(n-1) #не пишу return так как функция выводит принт
+#     else:
+#         return print()
+# try:
+#     number = int(input("Enter your number: "))
+#     my_star(number)
+# except Exception as error:
+#     print(error)
 
 
 # Задание 3.
@@ -55,6 +55,27 @@ except Exception as error:
 # Пользователь вводит a и b. Проиллюстрируйте работу функции примером.
 #
 #
+# def diap_nums(a, b) -> int:
+#
+#     if a == b:
+#         return a
+#
+#     if a < b:
+#         total = 0
+#         total = total + a
+#         return total + diap_nums(a + 1, b)
+#
+#     if a > b:
+#         a, b = b, a
+#         return diap_nums(a, b)
+#
+# try:
+#     print(diap_nums(1, 8))
+#     print(diap_nums(8, 1))
+#     print(diap_nums(-8, 1))
+# except Exception as error:
+#     print(error)
+
 
 
 
