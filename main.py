@@ -3,9 +3,9 @@
 # Напишите функцию, определяющую количество простых чисел в списке целых.
 # Список передаётся в качестве параметра. Полученный результат возвращается из функции.
 
-# nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-#
-#
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
 # def is_simple(number: int) -> bool:
 #     if number > 1:
 #         for i in range(2, number):
@@ -25,7 +25,7 @@
 #         if is_simple(number):
 #             print(number)
 #
-#
+# #
 # show_simple_numbers(numbers=nums)
 
 ###
@@ -105,7 +105,7 @@
 # print(f"Result: {result}")
 
 #####
-# области видимости
+# # области видимости
 # number = 10
 #
 #
@@ -129,15 +129,15 @@
 
 ############
 # LEGB - почитать
-# number = 10
-#
-#
+number = 10
+
+
 # def test():
 #     global number
 #     number = 11  # изменяем значение глобальной переменной
 #     print(number)
-#
-#
+# #
+# #
 # print(number)
 # test()
 # print(number)
@@ -145,7 +145,7 @@
 ####
 # def outer():
 #     number = 1
-#
+#     print(number)
 #     def inner():
 #         nonlocal number
 #         number = 2
@@ -153,8 +153,8 @@
 #
 #     inner()
 #     print(number)
-#
-#
+
+
 # outer()
 
 ###
@@ -173,14 +173,14 @@
 #         print(new_number)
 #         number = 2
 #
-#         # def inner_number_2():
-#         #     global number
-#         #     nonlocal new_number
-#         #     new_number = 3
-#         #     print(new_number)
-#         #     number = 3
-#         #
-#         # inner_number_2()
+#         def inner_number_2():
+#             global number
+#             nonlocal new_number
+#             new_number = 3
+#             print(new_number)
+#             number = 3
+#
+#         inner_number_2()
 #
 #     inner()
 #     print(new_number)
@@ -221,12 +221,13 @@
 # inner_func()
 # inner_func()
 # inner_func()
+# inner_func()
 
 
 # v1
-# def multiply(num1):
-#     def inner(num2): return num1 * num2
-#     return inner
+def multiply(num1):
+    def inner(num2): return num1 * num2
+    return inner
 
 # v2
 # def multiply(num1): return lambda num2: num1 * num2
@@ -234,17 +235,17 @@
 
 # def multiply_v2(num1, num2):
 #     return num1 * num2
-#
-#
+# #
+# #
 # for i in range(1, 10):
 #     print(f"{3} * {i} = {multiply_v2(3, i)}")
-
-
+#
+#
 # number1 = 3
 # mult_func = multiply(number1)
-# # print(mult_func(4))
-# # print(mult_func(5))
-# # print(mult_func(7))
+# print(mult_func(4))
+# print(mult_func(5))
+# print(mult_func(7))
 #
 # for number2 in range(1, 10):
 #     print(f"{number1} * {number2} = {mult_func(number2)}")
@@ -276,14 +277,16 @@
 
 #########
 # дополнительно: расписать вызовы: fib(2) и fib(3)
-# def fib(number):
-#     if number == 0 or number == 1:
-#         return number
+def fib(number):
+    if number == 0 or number == 1:
+        return number
+
+    return fib(number - 2) + fib(number - 1)
+
+
+print(fib(10)) # fib(10) = fib(9) + fib(8) = 34 + 21 = 55
+print(fib(2)) # fib(2) = fib(1) + fib(0) = 1 + 0 = 1
+print(fib(3)) # fib(3) = fib(2) + fib(1) = 1 + 1 = 2
 #
-#     return fib(number - 2) + fib(number - 1)
-#
-#
-# # print(fib(10))
-#
-# for i in range(1, 10):
-#     print(fib(i), end=' ')
+for i in range(1, 10):
+    print(fib(i), end=' ')
