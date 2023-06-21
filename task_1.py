@@ -89,53 +89,35 @@
 # заполненных случайным образом и находит позицию, с которой начинается последовательность из 10 чисел,
 # сумма которых минимальна.
 
-
+import math
 import random
 
-# V1
+#Рабочая версия
 
-# def min_sum_ind(my_array, start = 0):
-#     if start + 10 > len(my_array):
-#         return start
-#     min_sum = sum(my_array[start: start+10]) # Нашла в интернете, что так можно писать для удобства
-#     min_position = start
-#
-#     for i in range(start + 1, len(my_array) - 9): # Чтобы не выйти за пределы массива
-#         actual_sum = sum(my_array[i: i+10])
-#         if actual_sum < min_sum:
-#             min_sum = actual_sum
-#             min_position = i
-#     return min_sum_ind(my_array, start + 1)
+# inf : Константа math. inf возвращает положительную бесконечность,
+# значение которое является типом float и может присутствовать в математических выражениях.
 
-# Пишет, что превышена глубина рекурсии
+def min_sum_index(numbers, start_index, end_index, min_sum=math.inf, min_index=0):
+    if end_index < len(numbers):
+        current_sum = sum(numbers[start_index:end_index+1])
 
-# V2
-def min_sum_index(my_array, start_pos=0):
-    if start_pos + 10 > len(my_array):
-        return start_pos
+        if current_sum < min_sum:
+            min_sum = current_sum # Т.е. вначале мин сумма была бесконечно большим числом, а теперь поменялась
+            min_index = start_index
 
-    sums = []
-    for i in range(start_pos, len(my_array) - 9):
-        actual_sum = sum(my_array[i: i+10])
-        sums.append(actual_sum) # Записываю последовательно суммы в массив 2
+        start_index += 1
+        end_index += 1
 
-    min_sum_index = sums.index(min(sums)) # Вывожу минимальную сумму по индексу
-
-    return min_sum_index(my_array, start_pos + min_sum_index)
-#     Нужно ли тут написать return min_sum_index(my_array, start_pos + 1) ?
+        print(f"Min sum: {min_sum} Current sum: {current_sum}")
+        return min_sum_index(numbers, start_index, end_index, min_sum, min_index)
+    return min_index
 
 try:
 
-    NUMS_SIZE = 100
-    nums = []
-    FIRST = -20
-    LAST = 20
-
-    for i in range(NUMS_SIZE):
-        nums.append(random.randint(FIRST, LAST))
-    # print(min_sum_ind(nums))
-    print(min_sum_index(nums))
-    print(nums[3])
+    nums = [random.randint(-20, 20) for num in range(100)]
+    print(nums)
+    result = min_sum_index(nums, 0, 10)
+    print(result)
 
 
 except Exception as error:
@@ -143,4 +125,3 @@ except Exception as error:
 
 
 
-#  Для функции min_sum_index получаю 'int' object is not callable
